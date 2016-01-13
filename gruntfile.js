@@ -315,7 +315,7 @@ module.exports = function(grunt) {
       },
       upload3: {
         files: {
-          '/17200/experiments/usatoday/2016/01/election-coloring-book/': 'data/*.json'
+          // '/17200/experiments/usatoday/2016/01/election-coloring-book/': 'data/*.json'
         }
       }
     },
