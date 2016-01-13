@@ -9,13 +9,18 @@ define(
     var app = app || {};
 
     app.init = function() {
-      console.log(jQuery.fn.turn);
-      jQuery("#flipbook").turn({
-	    width: 800,
-		height: 500,
-		autoCenter: true
-	  });
+      setupBook();
     };
+
+    function setupBook() {
+        var winWidth = window.innerWidth;
+        var width = winWidth < 800 ? winWidth : 800;
+        jQuery("#flipbook").turn({
+            width: width,
+            height: width / 1.6,
+            autoCenter: true
+        });
+    }
 
 
     return app;
