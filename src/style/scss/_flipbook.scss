@@ -1,0 +1,29 @@
+.iapp-flipbook:after{
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	height:0;
+}
+
+.iapp-flipbook{
+	width:600px;
+	line-height:250px;
+	float:left;
+	text-align:center;
+
+    .page.hard {
+        background: $medium-grey;
+        color: white;
+    }
+}
+
+.iapp-flipbook .page-wrapper {
+    background: white;
+    border: solid 1px $light-grey;
+}
+
+.iapp-book-wrap {
+    margin: 0 auto;
+    width: 800px;
+}
