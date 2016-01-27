@@ -6,8 +6,10 @@
 	height:0;
 }
 
+$bookWidth: 1000px;
+
 .iapp-flipbook{
-	width:600px;
+	width:$bookWidth;
 	line-height:250px;
 	float:left;
 	text-align:center;
@@ -30,7 +32,7 @@
 
 .iapp-book-wrap {
     margin: 0 auto;
-    width: 800px;
+    width: $bookWidth;
 
     @extend .group;
 }
