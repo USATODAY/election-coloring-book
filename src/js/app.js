@@ -39,7 +39,7 @@ define(
         var width = winWidth < maxWidth ? winWidth : maxWidth;
         jQuery("#flipbook").turn({
             width: width,
-            height: width / 1.6,
+            height: width / 1.545454545454,
             autoCenter: true
         });
     }
