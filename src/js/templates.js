@@ -20,11 +20,11 @@ __p += '<div class="social">\n    <a href="https://twitter.com/intent/tweet?url=
 ((__t = (encodedShare)) == null ? '' : __t) +
 '&redirect_uri=' +
 ((__t = (fb_redirect)) == null ? '' : __t) +
-'"><img src="http://www.gannett-cdn.com/experiments/usatoday/2015/05/broadway/images/fb.svg" class="" alt="Share"  border="0"></a>\n    <a href="' +
+'"><img src="http://www.gannett-cdn.com/experiments/usatoday/2015/05/broadway/images/fb.svg" class="" alt="Share"  border="0"></a>\n</div>\n<a href="' +
 ((__t = ( download_url )) == null ? '' : __t) +
 '" download="' +
 ((__t = ( download_url )) == null ? '' : __t) +
-'" class="iapp-share-button iapp-download"><img src="http://www.gannett-cdn.com/experiments/usatoday/2015/06/emoji-index/img/download-icon.svg" alt="Download"></a>\n</div>\n';
+'" class=" iapp-download"><div class=\'button iapp-download-button\'>Download</div></a>\n';
 
 }
 return __p

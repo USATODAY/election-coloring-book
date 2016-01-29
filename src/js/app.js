@@ -11,16 +11,27 @@ define(
     var app = app || {};
 
     var $sharePopups;
+    var $forwardButton;
+    var $backButton;
+    var $flipBook;
+    var $loader;
+    var $window;
 
     var SHARE_TEXT = 'Check out USA TODAYs 2016 political coloring book';
     var DOWNLOAD_URL = 'http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
 
     var maxWidth = 1000;
     app.init = function() {
-        setupBook();
         jQuery('.iapp-page-share-wrap').html(templates['share.html'](createShare(SHARE_TEXT)));
+        $window = jQuery(window);
+        $flipBook = jQuery('#flipbook');
         $sharePopups = jQuery('.iapp-share-popup');
+        $forwardButton = jQuery('.forwardbutton');
+        $backButton = jQuery('.backbutton');
+        $loader = jQuery('.loader');
+        setupBook();
         addEvents();
+        $loader.fadeOut(500);
     };
 
     function addEvents() {
@@ -30,14 +41,36 @@ define(
             Analytics.trackEvent('2016-coloring-book-share-clicked');
             windowPopup(e.currentTarget.href, 500, 300);
         });
-        window.addEventListener('resize', _.throttle(setupBook, 500));
+
+        $forwardButton.on('click', function(e) {
+            $flipBook.turn('next');
+        });
+        
+        $backButton.on('click', function(e) {
+            $flipBook.turn('previous');
+        });
+
+        $window.on('keydown', function(e){
+		
+            if (e.keyCode==37)
+                $flipBook.turn('previous');
+            else if (e.keyCode==39)
+                $flipBook.turn('next');
+			
+        });
+
+        // $window.on('resize', _.throttle(resizeBook, 500));
+    }
+
+    function resizeBook() {
+        $flipBook.turn('resize');
     }
 
 
     function setupBook() {
         var winWidth = window.innerWidth;
-        var width = winWidth < maxWidth ? winWidth : maxWidth;
-        jQuery("#flipbook").turn({
+        var width = winWidth < maxWidth ? winWidth - 60 : maxWidth;
+        $flipBook.turn({
             width: width,
             height: width / 1.545454545454,
             autoCenter: true

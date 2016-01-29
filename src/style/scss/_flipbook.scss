@@ -6,6 +6,37 @@
 	height:0;
 }
 
+.backbutton, .forwardbutton {
+    background: rgba(0, 0, 0, 0.25);
+    bottom: 0;
+    position: absolute;
+    top: 0;
+    transition: background 100ms ease;
+    width: 30px;
+
+    &:hover {
+        background: $blue;
+    }
+
+    .nav-glyph {
+        color: white;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.backbutton {
+    border-radius: 5px 0 0 5px;
+    left: -30px;
+}
+
+.forwardbutton {
+    border-radius: 0 5px 5px 0;
+    right: -30px;
+}
+
 $bookWidth: 1000px;
 
 .iapp-flipbook{
@@ -32,6 +63,8 @@ $bookWidth: 1000px;
 
 .iapp-book-wrap {
     margin: 0 auto;
+    max-width: calc(100% - 60px);
+    position: relative;
     width: $bookWidth;
 
     @extend .group;
@@ -39,8 +72,7 @@ $bookWidth: 1000px;
 
 /* Basic sample */
 #flipbook{
-    width:400px;
-    height:300px;
+    width: 100%;
 }
 
 #flipbook .page{

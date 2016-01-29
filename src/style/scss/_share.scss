@@ -25,7 +25,7 @@
 
 .social {
     margin: 0 auto;
-    width: 200px;
+    width: 133.3333px;
 }
 .iapp-share-close {
     position: absolute;
@@ -35,6 +35,18 @@
     img {
         max-width: 100%;
     }
+}
+
+.iapp-download {
+    text-decoration: none;
+}
+
+.iapp-download-button.button {
+    width: 130px;
+}
+
+a .iapp-download-button {
+    text-decoration: none;
 }
 
 .iapp-share-button {

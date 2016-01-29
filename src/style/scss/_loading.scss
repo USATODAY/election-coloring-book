@@ -1,0 +1,17 @@
+.loader {
+    background: white;
+    bottom: 0;
+    color: black;
+    left: 0;
+    position: fixed;
+    right: 0;
+    top: 0;
+    z-index: 5000;
+
+    h2 {
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
