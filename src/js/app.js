@@ -10,12 +10,17 @@ define(
   function(jQuery, _, templates, Analytics, config){
     var app = app || {};
 
+    var clickPrefix = 'USAT-INTERACTIVE-POLITICS-COLOR-BOOK-';
+    var firstClick = false;
+
     var $sharePopups;
     var $forwardButton;
     var $backButton;
     var $flipBook;
     var $loader;
     var $window;
+    var $pages;
+    var $downloadButton;
 
     var SHARE_TEXT = 'Check out USA TODAYs 2016 political coloring book';
     var DOWNLOAD_URL = 'http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
@@ -29,6 +34,7 @@ define(
         $forwardButton = jQuery('.forwardbutton');
         $backButton = jQuery('.backbutton');
         $loader = jQuery('.loader');
+        $downloadButton = jQuery('.iapp-download-button');
         setupBook();
         addEvents();
         $loader.fadeOut(500);
@@ -36,28 +42,46 @@ define(
 
     function addEvents() {
         $sharePopups.on('click', function(e) {
-            console.log('share');
             e.preventDefault();
-            Analytics.trackEvent('2016-coloring-book-share-clicked');
+            Analytics.trackEvent(clickPrefix + 'SHARE-BUTTON');
             windowPopup(e.currentTarget.href, 500, 300);
         });
 
         $forwardButton.on('click', function(e) {
+            Analytics.trackEvent(clickPrefix + 'NEXT-BUTTON');
             $flipBook.turn('next');
         });
         
         $backButton.on('click', function(e) {
+            Analytics.trackEvent(clickPrefix + 'PREVIOUS-BUTTON');
             $flipBook.turn('previous');
         });
 
         $window.on('keydown', function(e){
 		
-            if (e.keyCode==37)
+            if (e.keyCode==37) {
+                Analytics.trackEvent(clickPrefix + 'ARROW-BACK');
                 $flipBook.turn('previous');
-            else if (e.keyCode==39)
+            } else if (e.keyCode==39) {
+                Analytics.trackEvent(clickPrefix + 'ARROW-NEXT');
                 $flipBook.turn('next');
+            }
 			
         });
+
+        $downloadButton.on('click', function(e) {
+            Analytics.trackEvent(clickPrefix + 'BOOK-DOWNLOAD');
+        });
+
+        // $pages.on('click', function(e) {
+        //     var isEven = jQuery(this).hasClass('even');
+        //     if (isEven) {
+        //         $flipBook.turn('previous');
+        //     } else {
+        //         $flipBook.turn('next');
+        //     }
+        //     return false;
+        // });
 
         // $window.on('resize', _.throttle(resizeBook, 500));
     }
@@ -73,8 +97,14 @@ define(
         $flipBook.turn({
             width: width,
             height: width / 1.545454545454,
-            autoCenter: true
+            autoCenter: true,
+            when: {
+                'turned': function(e, page, pageObj) {
+                    onPageTurn(e, page, pageObj);
+                }
+            }
         });
+        $pages = jQuery('.page-wrapper');
     }
 
     function createShare(shareString) {
@@ -94,6 +124,14 @@ define(
             twitterShare: encodeURIComponent(shareURL)
         };
 
+    }
+
+    function onPageTurn(e, page, newView) {
+        Analytics.trackEvent(clickPrefix + 'PAGE-TURNED');
+        Analytics.trackEvent(clickPrefix + 'PAGE-VIEWED-' + page);
+        console.log('turned');
+        console.log(page);
+        console.log(newView);
     }
 
     function windowPopup(url, width, height) {
