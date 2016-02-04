@@ -21,6 +21,8 @@ define(
     var $window;
     var $pages;
     var $downloadButton;
+    var $bookWrap;
+    var currentPage = 1;
 
     var SHARE_TEXT = 'Check out USA TODAYs 2016 political coloring book';
     var DOWNLOAD_URL = 'http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
@@ -29,24 +31,21 @@ define(
     app.init = function() {
         jQuery('.iapp-page-share-wrap').html(templates['share.html'](createShare(SHARE_TEXT)));
         $window = jQuery(window);
-        $flipBook = jQuery('#flipbook');
+        $bookWrap = jQuery('.iapp-book-wrap');
         $sharePopups = jQuery('.iapp-share-popup');
-        $forwardButton = jQuery('.forwardbutton');
-        $backButton = jQuery('.backbutton');
         $loader = jQuery('.loader');
         $downloadButton = jQuery('.iapp-download-button');
-        setupBook();
         addEvents();
+        renderBook();
         $loader.fadeOut(500);
     };
 
-    function addEvents() {
-        $sharePopups.on('click', function(e) {
-            e.preventDefault();
-            Analytics.trackEvent(clickPrefix + 'SHARE-BUTTON');
-            windowPopup(e.currentTarget.href, 500, 300);
-        });
-
+    function renderBook() {
+        $bookWrap.html(templates['book.html']());
+        $flipBook = jQuery('#flipbook');
+        $forwardButton = jQuery('.forwardbutton');
+        $backButton = jQuery('.backbutton');
+        setupBook();
         $forwardButton.on('click', function(e) {
             Analytics.trackEvent(clickPrefix + 'NEXT-BUTTON');
             $flipBook.turn('next');
@@ -56,6 +55,16 @@ define(
             Analytics.trackEvent(clickPrefix + 'PREVIOUS-BUTTON');
             $flipBook.turn('previous');
         });
+    
+    }
+
+    function addEvents() {
+        $sharePopups.on('click', function(e) {
+            e.preventDefault();
+            Analytics.trackEvent(clickPrefix + 'SHARE-BUTTON');
+            windowPopup(e.currentTarget.href, 500, 300);
+        });
+
 
         $window.on('keydown', function(e){
 		
@@ -73,17 +82,8 @@ define(
             Analytics.trackEvent(clickPrefix + 'BOOK-DOWNLOAD');
         });
 
-        // $pages.on('click', function(e) {
-        //     var isEven = jQuery(this).hasClass('even');
-        //     if (isEven) {
-        //         $flipBook.turn('previous');
-        //     } else {
-        //         $flipBook.turn('next');
-        //     }
-        //     return false;
-        // });
 
-        // $window.on('resize', _.throttle(resizeBook, 500));
+        $window.on('resize', _.throttle(renderBook, 500));
     }
 
     function resizeBook() {
@@ -95,6 +95,7 @@ define(
         var winWidth = window.innerWidth;
         var width = winWidth < maxWidth ? winWidth - 60 : maxWidth;
         $flipBook.turn({
+            page: currentPage,
             width: width,
             height: width / 1.545454545454,
             autoCenter: true,
@@ -104,7 +105,9 @@ define(
                 }
             }
         });
+
         $pages = jQuery('.page-wrapper');
+
     }
 
     function createShare(shareString) {
@@ -127,11 +130,9 @@ define(
     }
 
     function onPageTurn(e, page, newView) {
+        currentPage = page;
         Analytics.trackEvent(clickPrefix + 'PAGE-TURNED');
         Analytics.trackEvent(clickPrefix + 'PAGE-VIEWED-' + page);
-        console.log('turned');
-        console.log(page);
-        console.log(newView);
     }
 
     function windowPopup(url, width, height) {

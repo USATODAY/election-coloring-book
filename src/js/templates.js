@@ -2,6 +2,16 @@ define(function(){
 
 this["templates"] = this["templates"] || {};
 
+this["templates"]["book.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div id="flipbook" class="iapp-flipbook flipbook">\n    <div class="backbutton" ignore="1"><span class="nav-glyph">&#9668;</span></div>\n    <div class="iapp-page"> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/cover.jpg" alt=""> </div>\n    <div class="iapp-page"></div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/01.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/02.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/03.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/04.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/05.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/06.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/07.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/08.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/09.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/10.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/11.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/12.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/13.jpg" alt=""> </div>\n    <div class=\'iapp-page\'> <img src="http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/14.jpg" alt=""> </div>\n    <div class="hard"></div>\n    <div class="forwardbutton" ignore="1"><span class="nav-glyph">&#9658;</span></div>\n</div>\n        \n';
+
+}
+return __p
+};
+
 this["templates"]["share.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
