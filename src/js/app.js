@@ -119,7 +119,7 @@ define(
         return {
             'fb_id': config.fb_app_id,
             fbShare:  encodeURI(shareURL.replace('#', '%23')),
-            stillimage: "http://www.gannett-cdn.com/experiments/usatoday/2015/05/broadway/images/fb-post.jpg",
+            stillimage: "http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/fb-post.jpg",
             encodedShare: encodeURIComponent(shareString),
             fb_redirect: 'http://' + window.location.hostname + '/pages/interactives/fb-share/',
             email_link: "mailto:?body=" + encodeURIComponent(shareString) +  "%0d%0d" + encodeURIComponent(shareURL) + "&subject=",
