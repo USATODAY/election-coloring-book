@@ -24,7 +24,7 @@ define(
     var $bookWrap;
     var currentPage = 1;
 
-    var SHARE_TEXT = 'Check out USA TODAYs 2016 political coloring book';
+    var SHARE_TEXT = 'Shades of the campaign: The USA TODAY Campaign Coloring Book';
     var DOWNLOAD_URL = 'http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
 
     var maxWidth = 1000;
