@@ -12,6 +12,7 @@ define(
 
     var clickPrefix = 'USAT-INTERACTIVE-POLITICS-COLOR-BOOK-';
     var firstClick = false;
+    var drawingBook = true;
 
     var $sharePopups;
     var $forwardButton;
@@ -83,7 +84,9 @@ define(
         });
 
 
-        $window.on('resize', _.throttle(renderBook, 500));
+        $window.on('resize', _.throttle(function() {
+            renderBook();
+        }, 500));
     }
 
     function resizeBook() {
@@ -98,12 +101,12 @@ define(
             page: currentPage,
             width: width,
             height: width / 1.545454545454,
-            autoCenter: true,
-            when: {
-                'turned': function(e, page, pageObj) {
+            autoCenter: true
+            
+        });
+
+        $flipBook.bind('turned', function(e, page, pageObj) {
                     onPageTurn(e, page, pageObj);
-                }
-            }
         });
 
         $pages = jQuery('.page-wrapper');
