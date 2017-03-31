@@ -26,7 +26,7 @@ define(
     var currentPage = 1;
 
     var SHARE_TEXT = 'Shades of the campaign: The USA TODAY Campaign Coloring Book';
-    var DOWNLOAD_URL = 'http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
+    var DOWNLOAD_URL = 'https://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/color_book_print.pdf.zip';
 
     var maxWidth = 1000;
     app.init = function() {
@@ -122,7 +122,7 @@ define(
         return {
             'fb_id': config.fb_app_id,
             fbShare:  encodeURI(shareURL.replace('#', '%23')),
-            stillimage: "http://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/fb-post.jpg",
+            stillimage: "https://www.gannett-cdn.com/experiments/usatoday/2016/01/election-coloring-book/img/fb-post.jpg",
             encodedShare: encodeURIComponent(shareString),
             fb_redirect: 'http://' + window.location.hostname + '/pages/interactives/fb-share/',
             email_link: "mailto:?body=" + encodeURIComponent(shareString) +  "%0d%0d" + encodeURIComponent(shareURL) + "&subject=",
